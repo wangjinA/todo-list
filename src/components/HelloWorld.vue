@@ -1,18 +1,13 @@
 <template>
-  <div class="hello">
-    <input type="text" v-model="content" id="input" @keyup.enter="add">
-    <!-- <div class="list-container">
-      <h4>待完成</h4>
-      
-      <h4>已完成</h4>
-    </div> -->
-    <div class="module-wrap">
-      <div v-for="(moduleItem, index) in moduleList" :key="index" :class="`module-item module-item${index+1}`">
-        <div class="module-title">
+  <div class="hy-todo-list">
+    <input type="text" v-model="content" id="htl-input" @keyup.enter="add">
+    <div class="htl-module-wrap">
+      <div v-for="(moduleItem, index) in moduleList" :key="index" :class="`htl-module-item htl-module-item${index+1}`">
+        <div class="htl-module-title">
           <div>{{moduleItem.title}}</div>
           <span>+</span>
         </div>
-        <ul class="module-list">
+        <ul class="htl-module-list">
           <template v-for="(item, i) in list">
             <li :key="i" v-if="item.status === index">
               <div class="ml-content">
@@ -33,7 +28,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'hy-todo-list',
   data() {
     return {
       moduleList: [{
@@ -77,23 +72,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.hello{
-  // width: 800px;
-  // padding: 30px;
-  // position: fixed;
-  // left: 0;
-  // right: 0;
-  // margin: auto;
+.hy-todo-list{
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: rgb(64, 64, 64);
   width: 100vw;
   height: 100vh;
   padding: 10vh 10vw;
-  .module-wrap{
+  .htl-module-wrap{
     display: grid;
     grid-template: repeat(2, 1fr) ~'/' repeat(2, 1fr);
     height: 100%;
-    .module-item{
+    .htl-module-item{
       padding: 20px;
-      .module-list{
+      .htl-module-list{
         list-style: none;
         li{
           display: flex;
@@ -111,7 +103,7 @@ export default {
           }
         }
       }
-      .module-title{
+      .htl-module-title{
         background-color: var(--bgc);
         color: var(--color);
         padding: 10px;
@@ -148,10 +140,7 @@ export default {
     
     
   }
-  .list-container{
-    padding: 10px 0;
-  }
-  #input{
+  #htl-input{
     width: 100%;
     height: 40px;
     padding: 7px 10px;

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HelloWorld />
+    <HelloWorld v-if="show"/>
   </div>
 </template>
 
@@ -11,6 +11,18 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      show: false
+    }
+  },
+  mounted() {
+    window.addEventListener('keyup', e=>{
+      if(e.key === 'A'){
+        this.show = true
+      }
+    })
   }
 }
 </script>
