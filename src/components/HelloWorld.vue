@@ -1,5 +1,8 @@
 <template>
   <div class="hy-todo-list">
+    <div>
+      <input type="text" v-model="name">
+    </div>
     <input type="text" v-model="content" id="htl-input" @keyup.enter="add">
     <div class="htl-module-wrap">
       <div v-for="(moduleItem, index) in moduleList" :key="index" :class="`htl-module-item htl-module-item${index+1}`">
@@ -27,10 +30,13 @@
 </template>
 
 <script>
+import axios from './fetch'
 export default {
   name: 'hy-todo-list',
   data() {
     return {
+      name: localStorage.getItem('todoUserName') || '',
+      content: '',
       moduleList: [{
         title: '待完成',
       }, {
@@ -45,28 +51,43 @@ export default {
         name: '小汪',
         content: '文件服务对接',
         createTime: '09-26',
-        overTime: '09-27',
         status: 0, // 0 待完成 1 已完成
       }, {
         id: 1,
         name: '小汪',
         content: '首页修改',
         createTime: '09-26',
-        overTime: '09-27',
         status: 1, // 0 待完成 1 已完成
       }],
-      content: ''
     }
   },
+  watch: {
+    name(name){
+      localStorage.setItem('todoUserName', name)
+    } 
+  },
   methods: {
-    add() {
-      this.list.unshift({
-        name: '小汪',
+    add(status = 0) {
+      axios.$post('/api/addTodoList', {
+        name: this.name,
         content: this.content,
-        createTime: new Date().toLocaleDateString(),
-        status: 0
+        status
+      }).then(res=>{
+        if(res.data.status){
+          this.content = ''
+          alert('保存成功')
+        }
       })
+    },
+    f5() {
+      axios.$get('/api/getTodoList')
+        .then(res=>{
+          this.list = res.data.data
+        })
     }
+  },
+  created() {
+    this.f5()
   }
 }
 </script>

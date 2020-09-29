@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script src="./socket.io.js"></script>
+
+<body>
+  <a href="./apidoc">查看接口文档</a><span> [ 没有跳转请运行 npm run apidoc ]</span>
+  <script>
+    var socket = io.connect('http://localhost:3000');
+    socket.on('getMsg', function (data) {
+      console.log(data);
+      socket.emit('my other event', { my: 'data' });
+    });
+    socket.emit('send', '999');
+  </script>
+</body>
+
+</html>

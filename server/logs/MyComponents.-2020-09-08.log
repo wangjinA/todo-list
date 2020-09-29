@@ -1,0 +1,3 @@
+[2020-09-08T13:41:57.786] [INFO] logConsole -  GET - /api/getCode?cName=scrollTable - {"cName":"scrollTable"} 
+[2020-09-08T13:41:59.027] [INFO] logConsole -  POST - /api/login - {"userName":"小汪同学","password":"123"} 
+[2020-09-08T13:41:59.391] [INFO] logConsole -  GET - /api/getCode?cName=threedTags - {"cName":"threedTags"} 
