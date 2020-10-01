@@ -1,7 +1,9 @@
 {
-  "name": "todo-list",
-  "version": "0.1.0",
-  "private": true,
+  "name": "wj-todo-list",
+  "version": "1.0.0",
+  "private": false,
+  "author": "wang__jin",
+  "license": "ISC",
   "scripts": {
     "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",

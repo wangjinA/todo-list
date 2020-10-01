@@ -14,6 +14,7 @@ function getConnection(sql) {
         // console.log(sql);
         if (err) {
           console.log(err);
+          console.log(sql);
           return reject('SQL查询出错' + err.toString())
         }
         resolve(result)
@@ -26,7 +27,7 @@ function getConnection(sql) {
 function isRes(res) {
   return res && res.length
 }
-
+console.log(new Date().toLocaleString());
 module.exports = {
   // 登录
   login({ userName, password }) {
@@ -54,12 +55,12 @@ module.exports = {
     let sql = `select * from todoList`
     return getConnection(sql)
   },
-  addTodoList({name, content, status, createTime, id}) {
+  addTodoList({name, content, status, id}) {
     let currentTime = new Date().toLocaleString()
-    let sql = `insert into todoList(name, content, status, createTime, updateTime) values (${name, content, status, currentTime, currentTime})`
+    let sql = `insert into todoList(name, content, status, createTime, updateTime) values ('${name}', '${content}', ${status}, '${currentTime}', '${currentTime}')`
     if (id) {
       console.log(id);
-      sql = `UPDATE todoList set name='${name}',content='${content}', status=${status}, updateTime=${currentTime} WHERE id=${id}`
+      sql = `UPDATE todoList set name='${name}', content='${content}', status=${status}, updateTime='${currentTime}' WHERE id=${id}`
     }
     return getConnection(sql)
   }

@@ -14,7 +14,7 @@ const requestAPI = (url, options, showInfo = false) => {
     // 因为 no-store 压根没把响应结果存在本地；而 reload 第一次强制刷新，第二次是的 only-if-cached 之类的就会命中缓存。
     headers: {
       'content-type': 'application/json',
-      token: localStorage.getItem('token')
+      // token: localStorage.getItem('token')
     },
     method: options.method || 'GET', // *GET, POST, PUT, DELETE, etc.
     // credentials: 'same-origin', // include, same-origin, *omit
@@ -36,14 +36,14 @@ const requestAPI = (url, options, showInfo = false) => {
     }
     return response.json().then(res => {
       console.log(showInfo, res.message);
-      if (showInfo && res.message) {
-        // Message[res.status ? 'success' : 'error']({
-        //   content: res.message,
-        //   duration: 2.2,
-        //   background: true
-        // })
-        console.log(res.message);
-      }
+      // if (showInfo && res.message) {
+      //   // Message[res.status ? 'success' : 'error']({
+      //   //   content: res.message,
+      //   //   duration: 2.2,
+      //   //   background: true
+      //   // })
+      //   console.log(res.message);
+      // }
       return res
     })
   })
